@@ -1,0 +1,46 @@
+.bg{
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    padding: 2%;
+    width: 100%;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+  
+}
+
+
+.countl{
+    display: flex;
+    flex-direction: row;
+}
+
+.l1{
+    margin-left: 2%;
+    width: 22%;
+}
+
+.l2{
+    width: 22%;
+    margin-left: 2%;
+}
+
+.l3{
+    width: 22%;
+    margin-left: 2%;
+}
+
+.APP{
+    width: 22%;
+    margin-left: 2%;
+}
+
+.lll{
+    height: 50%;
+    background-color: aqua;
+    /* width: 80%; */
+    /* margin-left: 20%; */
+}
