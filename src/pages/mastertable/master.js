@@ -1,70 +1,65 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import { useEffect ,useState} from "react";
+import axios from "axios";
 
-import L1master from './lmaster/l1master';
+import './master.css'
+import Tables from './tables'
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+
+
+const Master=()=>{
+  const [budata,setbudata]=useState([])
+  const [buid,setbuid]=useState("")
+  const [buname,setbuname]=useState("")
+
+  useEffect(() => {
+   (async()=>{
+    const data=await axios.get("http://localhost:3001/getbulist")
+    for(let i of data.data){
+      setbudata(budata.push(i))
+    }
+    setbudata([...budata])
+   })();
+  
+   console.log(budata) 
+  },[]);
+
+  useEffect(() => {
+    for(let i of budata){
+      if(buid==i.buid){
+        setbuname(i.buname)
+      }
+    }
+  }, [buid]);
+  
+
 
   return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+    <div>
+      <select className="select" name="bunameis" onChange={(event)=>{
+        setbuid(event.target.value)
+      }}>
+        <option value="none" selected disabled hidden>
+          Select an Business
+        </option>
+        {budata.map((x) => {
+          return (
+            <option className="option" value={x.buid} key={x.buid}>
+              {x.buname}
+            </option>
+          );
+        })}
+      </select>
+      {/* <div className="buname">
+        <h1>
+          {buname}
+        </h1>
+      </div> */}
+      <div style={{marginLeft:"10px",marginTop:"20px"}}>
+      <Tables buid={buid}></Tables>
+      </div>
+     
     </div>
   );
 }
 
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
-
-export default function Master() {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="L1 MASTER" {...a11yProps(0)} />
-          <Tab label="L2 MASTER" {...a11yProps(1)} />
-          <Tab label="L3 MASTER" {...a11yProps(2)} />
-        </Tabs>
-      </Box>
-      <TabPanel value={value} index={0}>
-       <L1master></L1master>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-      L2 MASTER
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-      L3 MASTER
-      </TabPanel>
-    </Box>
-  );
-}
+export default Master
