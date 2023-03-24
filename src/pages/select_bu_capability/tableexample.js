@@ -133,7 +133,7 @@ const Tableexample = () => {
 
   useEffect(() => {
     const getdata = async () => {
-      const datais = await axios.get("http://localhost:3001/");
+      const datais = await axios.get(`http://${process.env.REACT_APP_LOCALHOSTIP_NAME}:3001/`);
       // console.log(datais.data)
       setapidata([...datais.data]);
 

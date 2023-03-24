@@ -11,7 +11,7 @@ const Tables=(props)=>{
     useEffect(() => {
         (async()=>{
             setl1data(l1data.splice(0))
-            const l1datais=await axios.get(`http://localhost:3001/getl1/${props.buid}`)
+            const l1datais=await axios.get(`http://${process.env.REACT_APP_LOCALHOSTIP_NAME}:3001/getl1/${props.buid}`)
             for(let i of l1datais.data){
                 setl1data(l1data.push(i))
             }
@@ -28,8 +28,8 @@ const Tables=(props)=>{
         <table className="styled-table">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Points</th>
+              <th>L1_LIST</th>
+              <th>Type</th>
               <th>Edit</th>
               <th>delete</th>
             </tr>
@@ -38,7 +38,7 @@ const Tables=(props)=>{
             {l1data.map((x) => {
               return (
                 <tr key={x.l1name}>
-                  <td><a className="a" href={`/showl2/${x.l1id}/${x.l1name}`} title="click here to see all l2">{x.l1name}</a></td>
+                  <td><a className="a" href={`/showl2/${x.l1id}/${props.buname}`} title="click here to see all l2">{x.l1name}</a></td>
                   <td>{x.ctype}</td>
                   <td><Button variant="outlined" onClick={()=>{
                     changel1id(x.l1id)

@@ -4,8 +4,8 @@ import "../master.css";
 import { Button } from "@mui/material";
 import { useParams } from "react-router-dom";
 
-const Showl3 = (props) => {
-  const {l1id,l2id,bunameis} = useParams();
+const Showapp = (props) => {
+  const {l1id,l2id,l3id,bunameis} = useParams();
 
   const [l3data, setl3data] = useState([]);
 
@@ -14,7 +14,7 @@ const Showl3 = (props) => {
     (async () => {
       setl3data(l3data.splice(0));
       const l3datais = await axios.get(
-        `http://${process.env.REACT_APP_LOCALHOSTIP_NAME}:3001/getl3byl2/${l2id}`
+        `http://${process.env.REACT_APP_LOCALHOSTIP_NAME}:3001/getapp/${l1id}/${l2id}/${l3id}`
       );
       console.log(l3datais.data);
       for (let i of l3datais.data) {
@@ -39,7 +39,7 @@ const Showl3 = (props) => {
       <table className="styled-table">
         <thead>
           <tr>
-            <th>L3_LIST</th>
+            <th>APP_LIST</th>
             <th>Type</th>
             <th>Edit</th>
             <th>delete</th>
@@ -50,13 +50,7 @@ const Showl3 = (props) => {
             return (
               <tr key={x.l3id}>
                 <td>
-                  <a
-                    className="a"
-                    href={`/showapp/${l1id}/${l2id}/${x.l3id}/${bunameis}`}
-                    title="click here to see all l2"
-                  >
-                    {x.l3name}
-                  </a>
+                    {x.appnameinmaping}
                 </td>
                 <td>{x.ctype}</td>
                 <td>
@@ -83,4 +77,4 @@ const Showl3 = (props) => {
   );
 };
 
-export default Showl3;
+export default Showapp;

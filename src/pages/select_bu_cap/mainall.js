@@ -36,7 +36,7 @@ const Mainall = () => {
 
   useEffect(() => {
     const getdata = async () => {
-      const getdatais = await axios.get("http://localhost:3001/");
+      const getdatais = await axios.get(`http://${process.env.REACT_APP_LOCALHOSTIP_NAME}:3001/`);
       // console.log(getdatais.data)
       setdata([...getdatais.data]);
       // setdapidata(apidata.push(getdatais.data))

@@ -9,14 +9,14 @@
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 80%;
+    min-width: 60%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .styled-table thead tr {
-    background-color: #009879;
+   background: linear-gradient(90deg, rgba(189,56,97,1) 0%, rgba(11,116,176,1) 0%, rgba(117,71,156,1) 0%, rgba(217,226,231,1) 0%, rgba(106,183,226,1) 0%);
     color: #ffffff;
-    text-align: center;
+    text-align: left;
 }
 
 .styled-table th,
@@ -34,10 +34,25 @@
 }
 
 .styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid  rgba(106,183,226,1);
 }
 
 .a{
     color: black;
     text-decoration: underline;
 }
+
+.l1text{
+    border: 2px solid black;
+    padding: 1%;
+    width: 25%;
+}
+
+
+.l2text{
+    border: 2px solid black;
+    padding: 1%;
+    width: 25%;
+    margin-left: 10px;
+}
+

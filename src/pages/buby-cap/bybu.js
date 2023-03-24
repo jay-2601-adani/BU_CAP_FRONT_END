@@ -33,7 +33,7 @@ const Bybu = () => {
         }
 
         const run=async()=>{
-            const data=await axios.get("http://localhost:3001/")
+            const data=await axios.get(`http://${process.env.REACT_APP_LOCALHOSTIP_NAME}:3001/`)
             setapidata([...data.data])
         }
         run()

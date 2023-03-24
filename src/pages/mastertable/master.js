@@ -3,6 +3,8 @@ import axios from "axios";
 
 import './master.css'
 import Tables from './tables'
+import { Button } from "@mui/material";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 
 
@@ -13,7 +15,7 @@ const Master=()=>{
 
   useEffect(() => {
    (async()=>{
-    const data=await axios.get("http://localhost:3001/getbulist")
+    const data = await axios.get(`http://${process.env.REACT_APP_LOCALHOSTIP_NAME}:3001/getbulist`)
     for(let i of data.data){
       setbudata(budata.push(i))
     }
@@ -49,13 +51,14 @@ const Master=()=>{
           );
         })}
       </select>
+      <Button variant="contained" style={{marginLeft:"26%"}}><AddCircleOutlineIcon></AddCircleOutlineIcon> &nbsp; Add L1</Button>
       {/* <div className="buname">
         <h1>
           {buname}
         </h1>
       </div> */}
       <div style={{marginLeft:"10px",marginTop:"20px"}}>
-      <Tables buid={buid}></Tables>
+      <Tables buid={buid} buname={buname}></Tables>
       </div>
      
     </div>
